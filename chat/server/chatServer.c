@@ -43,27 +43,43 @@ int main(int argc, char** argv)
     
     while(1)
     {
+    while(1)
+    {
         listenfd = listen(sockfd, 100);
     
         printf("Listening....\n");
         clientfd = accept(sockfd ,  (struct sockaddr *)server , &serverSize);
         printf("Client Connected.... %d\n", clientfd);
-        char* server_reply = malloc(2000 * sizeof(char));
         //add this client to our array of clients
         clients[numberOfConnectedClients++] =  clientfd;
         char* message = "hello";
         broadcast(message, clients, numberOfConnectedClients);
-        int error1;
-        error1 = recv(sockfd, server_reply, sizeof(server_reply), 0);
-            if(error1 < 0)
+       
+         break;
+       
+    }
+    char* server_reply = malloc(2000 * sizeof(char));
+    int errorc;
+     while(1)
+        {
+           
+            errorc = recv(clientfd, server_reply, (2 *(sizeof(server_reply))), 0);
+            if(errorc < 0)
             {
-                puts("Failed to Recieve\n");
+                puts("recv failed");
+                puts(server_reply);
             }
             else
             {
-                puts("Message Recieved\n");
+                puts("Reply received\n");
                 puts(server_reply);
+               
             }
+            break;
+        }
+        //playing with multiple clients here with the while loop. will have to create something to handle each client individually
+        
+        break;
     }
     //write(clientfd, buffer, sizeof(buffer));
 }

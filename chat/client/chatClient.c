@@ -33,16 +33,16 @@ int main(int argc, char** argv)
             if(error < 0)
             {
                 puts("recv failed");
+                break;
             }
             else
             {
-                char* ab = "";
+                char* ab = "Got It";
                 puts("Reply received\n");
                 puts(server_reply);
-                scanf("%s", ab);  //read the formatted input
-                
-                    send(sockfd, ab, strlen(ab) , 0);  //send the message
-                     print("Sending to Server:");     //confirm delivery
+                send(sockfd, ab, strlen(ab) , 0);  //send the message
+                print("Sending to Server:");     //confirm delivery
+                break;
                 
             }
         }
