@@ -9,7 +9,7 @@
 
 int main(int argc, char** argv)
 {
-    uint16_t port = 3000;
+    uint16_t port = 4000;
     int error;
     struct sockaddr_in* server = malloc(sizeof(struct sockaddr_in));
     server->sin_addr.s_addr = inet_addr("127.0.0.1");
