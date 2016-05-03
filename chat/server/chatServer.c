@@ -72,8 +72,11 @@ int main(int argc, char** argv)
 
 void childStuff(int clientfd)
 {
-    sendMessage("Hello from the child.  Do you have candy?", clientfd);
-    receiveMessage(clientfd);
+    sendMessage("Welcome to the Chat server", clientfd);
+    while(1)
+    {
+        receiveMessage(clientfd);
+    }
 }
 
 void receiveMessage(int clientfd)
